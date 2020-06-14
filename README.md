@@ -37,3 +37,20 @@ animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProp
 //Or select(animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProperty3));  
 ```
 <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_gif1.gif"/>
+### More explanation clearly here: <a href="https://www.selectionjs.com">www.selectionjs.com/animation</a>
+
+### Event triggering animation:
+
+```javascript
+var objectProperty={typeAnimation:"bounceout","property":[{transform:["translateZ","rotateZ","rotateX"]},"left"],
+from:800,to:0,duration:2000}
+var objectProperty2={typeAnimation:"bounceout","property":"borderRadius",
+from:50,to:0,duration:2000}
+var objectProperty3={typeAnimation:"bounceout","property":[{transform:["translateX","rotateY","rotateZ"]},"left"],
+from:0,to:500,duration:2000}
+select("#event_here",animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProperty3));//"e:x|y"  x:event,y:(false or true) is a useCapture,"e:click|false" is Default
+ 
+```
+<img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_gif2.gif"/>
+### More explanation clearly here: <a href="https://www.selectionjs.com">www.selectionjs.com/animation</a>
+
