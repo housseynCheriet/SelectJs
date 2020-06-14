@@ -54,3 +54,7 @@ select("#event_here",animate(select('#div'),objectProperty,objectProperty2,selec
 <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_gif2.gif"/>
 ### More explanation clearly here: <a href="https://www.selectionjs.com">www.selectionjs.com/eventTriggeringAnimation</a>
 
+
+We love feedback!
+-----------------
+
