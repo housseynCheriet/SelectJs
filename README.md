@@ -20,3 +20,4 @@ elems.forEach(function( el ) {
 })
 ```
 <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_img1.jpg"/>
+<a href="https://www.selectionjs.com">More explanation clearly here</a><a href="https://www.selectionjs.com">www.selectionjs.com</a>
