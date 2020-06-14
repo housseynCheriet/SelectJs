@@ -26,3 +26,14 @@ elems.forEach(function( el ) {
  - There are 43 types of easing in animation (cubicbezier,linear,vibration,cubicin,...)
  <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_img2.jpg"/>
 
+```javascript
+var objectProperty={typeAnimation:"bounceout","property":[{transform:["translateY","rotateZ","rotateX"]},"left"],
+from:[{transform:[100,9000,3000]},800],to:0,duration:10000}
+var objectProperty2={typeAnimation:"vibration","property":[{backgroundColor:["rgbR","rgbG","rgbB"]},"borderRadius"],
+from:[{backgroundColor:[10,250,10]},50],to:[{backgroundColor:[100,20,220]},0],vibrationStep:50,duration:10000}
+var objectProperty3={typeAnimation:"elasticin","property":[{transform:["translateZ","rotateY","rotateZ"]},"left"],
+from:[{transform:[-600,900,3000]},0],to:[{transform:[0]},700],duration:10000}
+animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProperty3)();
+//Or select(animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProperty3));  
+```
+<img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_gif1.gif"/>
