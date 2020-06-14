@@ -20,4 +20,5 @@ elems.forEach(function( el ) {
 })
 ```
 <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_img1.jpg"/>
-### More explanation clearly here : <a href="https://www.selectionjs.com">www.selectionjs.com</a>
+### More explanation clearly here :
+<a href="https://www.selectionjs.com">www.selectionjs.com</a>
