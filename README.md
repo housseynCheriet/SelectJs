@@ -11,7 +11,7 @@ Include via [jsdelivr.com](https://www.jsdelivr.com/)
 <script src="https://cdn.jsdelivr.net/gh/housseynCheriet/SelectJs/selectjs.min.1.js"></script>
 ```
 ## Usage
-### Selecting DOM elements
+### Selecting DOM elements:
 ```javascript
 
 var elems=select('.div',2,3,'.div2',3,4);//Select the nth(2),nth(3) element from class ".div" and nth(3),nth(4) element from class ".div2"
@@ -21,5 +21,7 @@ elems.forEach(function( el ) {
 ```
 <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_img1.jpg"/>
 
-### More explanation clearly here:
-<a href="https://www.selectionjs.com">www.selectionjs.com</a>
+### More explanation clearly here: <a href="https://www.selectionjs.com">www.selectionjs.com</a>
+### Animation:
+ - There are 43 types of easing in animation (cubicbezier,linear,vibration,cubicin,...)
+
