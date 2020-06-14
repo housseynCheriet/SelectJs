@@ -19,4 +19,4 @@ elems.forEach(function( el ) {
     el.style.background="green";
 })
 ```
-<img alt="Logo" src="https://www.selectionjs.com/img/select_img1.jpg"/>
+<img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_img1.jpg"/>
