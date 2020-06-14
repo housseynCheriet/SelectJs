@@ -24,4 +24,5 @@ elems.forEach(function( el ) {
 ### More explanation clearly here: <a href="https://www.selectionjs.com">www.selectionjs.com</a>
 ### Animation:
  - There are 43 types of easing in animation (cubicbezier,linear,vibration,cubicin,...)
+ <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_img2.jpg"/>
 
