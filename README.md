@@ -55,6 +55,16 @@ select("#event_here",animate(select('#div'),objectProperty,objectProperty2,selec
 ### More explanation clearly here: <a href="https://www.selectionjs.com">www.selectionjs.com/eventTriggeringAnimation</a>
 
 
+### Drag and Drop Elements:
+
+Drag’n’Drop algorithm
+drag(d,w,string1,string2,string3)();
+d (Obligatory):the element dragged.
+w (Optional):Where to drag the element dragged.
+string1,string2,string3 (Optional): the type of event ,("e:mousedown","e:mousemove","e:mouseup") is default.
+
+### More explanation clearly here: <a href="https://www.selectionjs.com">https://www.selectionjs.com/dragAndDrop</a>
+
 We love feedback!
 -----------------
 
