@@ -10,7 +10,7 @@ Include via [jsdelivr.com](https://www.jsdelivr.com/)
 ```html
 <script src="https://cdn.jsdelivr.net/gh/housseynCheriet/SelectJs/selectjs.min.1.js"></script>
 ```
-## Usage
+## 1-Usage
 ### Selecting DOM elements:
 ```javascript
 
@@ -22,7 +22,9 @@ elems.forEach(function( el ) {
 <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_img1.jpg"/>
 
 ### More explanation clearly here: <a href="https://www.selectionjs.com">www.selectionjs.com</a>
-### Animation:
+
+## 2-What is in the library?
+### -Animation:
  - There are 43 types of easing in animation (cubicbezier,linear,vibration,cubicin,...)
  <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_img2.jpg"/>
 
@@ -37,9 +39,10 @@ animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProp
 //Or select(animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProperty3));  
 ```
 <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_gif1.gif"/>
+
 ### More explanation clearly here: <a href="https://www.selectionjs.com">www.selectionjs.com/animation</a>
 
-### Event triggering animation:
+### -Event triggering animation:
 
 ```javascript
 var objectProperty={typeAnimation:"bounceout","property":[{transform:["translateZ","rotateZ","rotateX"]},"left"],
@@ -52,11 +55,11 @@ select("#event_here",animate(select('#div'),objectProperty,objectProperty2,selec
  
 ```
 <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_gif2.gif"/>
-### More explanation clearly here:
-<a href="https://www.selectionjs.com">www.selectionjs.com/eventTriggeringAnimation</a>
+
+### More explanation clearly here: <a href="https://www.selectionjs.com">www.selectionjs.com/eventTriggeringAnimation</a>
 
 
-### Drag and Drop Elements:
+### -Drag and Drop Elements:
 ```html
 Drag’n’Drop algorithm
 drag(d,w,string1,string2,string3)();
@@ -65,8 +68,7 @@ w (Optional):Where to drag the element dragged.
 string1,string2,string3 (Optional): the type of event ,("e:mousedown","e:mousemove","e:mouseup") is default.
 ```
 
-### More explanation clearly here:
-<a href="https://www.selectionjs.com">https://www.selectionjs.com/dragAndDrop</a>
+### More explanation clearly here: <a href="https://www.selectionjs.com">https://www.selectionjs.com/dragAndDrop</a>
 
 We love feedback!
 -----------------
