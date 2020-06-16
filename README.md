@@ -57,18 +57,11 @@ select("#event_here",animate(select('#div'),objectProperty,objectProperty2,selec
 
 ### Drag and Drop Elements:
 ```html
-<b><b style="
-    font-size: 1.4rem;
-">Drag’n’Drop algorithm</b></b>
-<b style="
-    margin: 15px 0px 3px 20px;
-    position: relative;
-    display: block;
-    white-space: pre-wrap;
-">drag(d,w,string1,string2,string3)();
+Drag’n’Drop algorithm
+drag(d,w,string1,string2,string3)();
 d (Obligatory):the element dragged.
 w (Optional):Where to drag the element dragged.
-string1,string2,string3 (Optional): the type of event ,("e:mousedown","e:mousemove","e:mouseup") is default.</b>
+string1,string2,string3 (Optional): the type of event ,("e:mousedown","e:mousemove","e:mouseup") is default.
 ```
 
 ### More explanation clearly here: <a href="https://www.selectionjs.com">https://www.selectionjs.com/dragAndDrop</a>
