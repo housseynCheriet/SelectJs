@@ -58,6 +58,7 @@ select("#event_here",animate(select('#div'),objectProperty,objectProperty2,selec
 
 ### More explanation clearly here: <a href="https://www.selectionjs.com">www.selectionjs.com/eventTriggeringAnimation</a>
 
+### -Event triggering any function: <a href="https://www.selectionjs.com">https://www.selectionjs.com/SelectJsDOMEventListener</a>
 
 ### -Drag and Drop Elements:
 ```html
