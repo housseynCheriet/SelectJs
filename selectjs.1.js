@@ -394,10 +394,7 @@ function drag() {
         isDown = false;
     }
 }
-}
-}
-}
-}
+
 
 function animate() {
     var s = arguments;
@@ -420,22 +417,23 @@ function animate() {
                 rr = e;
             }
             for (var c = 0; void 0 !== s[c]; c++) {
-                y = 0, objFrom = false, objTo = false;
-                if ("object" == typeof s[c].from)
-                    objFrom = true;
-                if ("object" == typeof s[c].to)
-                    objTo = true;
+                y = 0;
                 if (bolNext || (Array.isArray(s[c]) || isElement(s[c]))) {
                     Array.isArray(s[c]) || (s[c] = [s[c]]), Array.prototype.push.apply(r, s[c]);
                     bolNext = false;
                 } else {
-                    bolNext = false;
+                    bolNext = false, objFrom = false, objTo = false;
                     if (c == 0) {
                         for (var u = 0; void 0 !== e[u]; u++) {
                             if ("number" != typeof e[u])
                                 r.push(e[u]);
                         }
                     }
+                    
+                if ("object" == typeof s[c].from)
+                    objFrom = true;
+                if ("object" == typeof s[c].to)
+                    objTo = true;
                     if (s[c].typeAnimation == "vibration" && s[c].vibrationStep == undefined) {
                         s[c].vibrationStep = 6;
                     } else {
@@ -585,7 +583,14 @@ function animate() {
                 } else {
                     b < l.duration ? o = b : (o = l.duration, s = 0);
                 }
-                a = Easing[typeAnimation][0](o, 0, 1, l.duration, l), l.property.forEach(function(e) {
+                a = Easing[typeAnimation][0](o, 0, 1, l.duration, l);
+                if(l.callback){
+                    console.log(a)
+                    r.forEach(function(e) {
+                  l.callback(e,a,l); 
+                });
+                }else{
+                l.property.forEach(function(e) {
                     if (t = Object.keys(e)[0], null != l.storeValueAnim[t]) {
                         if ("transform" == t.toLowerCase()) c = "", e.transform.forEach(function(e) {
                             aa = l.storeValueAnim["from"][t][e] + a * (l.storeValueAnim["to"][t][e] - l.storeValueAnim["from"][t][e]);
@@ -605,7 +610,8 @@ function animate() {
                     } else "string" == typeof e && (t = e), c = repalce[t].replace("*", l.storeValueAnim["from"][t] + a * (l.storeValueAnim["to"][t] - l.storeValueAnim["from"][t])), r.forEach(function(e) {
                         e.style[t] = c
                     })
-                }), (l.boucle || b < l.duration) && (l.animFram = requestAnimationFrame(e))
+                })};
+                (l.boucle || b < l.duration) && (l.animFram = requestAnimationFrame(e))
             }
         }
     }
