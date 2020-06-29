@@ -7,7 +7,7 @@
  * @copyright ©2020 Housseyn Cheriet
  * Released under the MIT license
 **/
- function slider(n, el, img, col, row, strTitle, divCube) {
+ function slider(n, el, col, row, img, strTitle, divCube) {
      var col=typeof col=="number"&&col>0?col:8,
      row=typeof row=="number"&&row>0?row:1,
      strTitle=strTitle!=undefined?strTitle:[],
