@@ -60,6 +60,10 @@ select("#event_here",animate(select('#div'),objectProperty,objectProperty2,selec
 
 ### -Event triggering any function: <a href="https://www.selectionjs.com">https://www.selectionjs.com/SelectJsDOMEventListener</a>
 
+### -Image Slider:
+
+### The explanation clearly here: <a href="https://www.selectionjs.com">https://www.selectionjs.com/imageSlider</a>
+
 ### -Drag and Drop Elements:
 ```html
 Drag’n’Drop algorithm
