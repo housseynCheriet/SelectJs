@@ -40,7 +40,7 @@ animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProp
 ```
 <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_gif1.gif"/>
 
-### More explanation clearly here: <a href="https://www.selectionjs.com">www.selectionjs.com/animation</a>
+### More explanation clearly here: <a href="https://www.selectionjs.com/animation">www.selectionjs.com/animation</a>
 
 ### -Event triggering animation:
 
@@ -56,13 +56,13 @@ select("#event_here",animate(select('#div'),objectProperty,objectProperty2,selec
 ```
 <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_gif2.gif"/>
 
-### More explanation clearly here: <a href="https://www.selectionjs.com">www.selectionjs.com/eventTriggeringAnimation</a>
+### More explanation clearly here: <a href="https://www.selectionjs.com/eventTriggeringAnimation">www.selectionjs.com/eventTriggeringAnimation</a>
 
-### -Event triggering any function: <a href="https://www.selectionjs.com">https://www.selectionjs.com/SelectJsDOMEventListener</a>
+### -Event triggering any function: <a href="https://www.selectionjs.com/SelectJsDOMEventListener">https://www.selectionjs.com/SelectJsDOMEventListener</a>
 
 ### -Image Slider:
 
-### The explanation clearly here: <a href="https://www.selectionjs.com">https://www.selectionjs.com/imageSlider</a>
+### The explanation clearly here: <a href="https://www.selectionjs.com/imageSlider">https://www.selectionjs.com/imageSlider</a>
 
 ### -Drag and Drop Elements:
 ```html
@@ -73,7 +73,7 @@ w (Optional):Where to drag the element dragged.
 string1,string2,string3 (Optional): the type of event ,("e:mousedown","e:mousemove","e:mouseup") is default.
 ```
 
-### More explanation clearly here: <a href="https://www.selectionjs.com">https://www.selectionjs.com/dragAndDrop</a>
+### More explanation clearly here: <a href="https://www.selectionjs.com/dragAndDrop">https://www.selectionjs.com/dragAndDrop</a>
 
 We love feedback!
 -----------------
