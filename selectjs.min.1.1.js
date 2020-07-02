@@ -1,6 +1,6 @@
 /**
  * SelectJs library and framework of JavaScript
- * @version v1
+ * @version v1.1
  * @author Housseyn Cheriet
  * @copyright ©2020 Housseyn Cheriet
  * Released under the MIT license
