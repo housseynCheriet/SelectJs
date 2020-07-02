@@ -607,7 +607,7 @@ function animate() {
                                 e.style[t] = c
                             })
                         }
-                    } else "string" == typeof e && (t = e), c = repalce[t].replace("*", l.storeValueAnim["from"][t] + a * (l.storeValueAnim["to"][t] - l.storeValueAnim["from"][t])), r.forEach(function(e) {
+                    } else "string" == typeof e && (t = e), c = (l.px=="%"?repalce[t].replace("px","%"):repalce[t]).replace("*", l.storeValueAnim["from"][t] + a * (l.storeValueAnim["to"][t] - l.storeValueAnim["from"][t])), r.forEach(function(e) {
                         e.style[t] = c
                     })
                 })};
@@ -633,6 +633,8 @@ whoproperty = {
 var repalce = {
         left: "*px",
         top: "*px",
+        bottom: "*px",
+        right: "*px",
         width: "*px",
         height: "*px",
         minWidth: "*px",
