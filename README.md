@@ -8,7 +8,7 @@
 Include via [jsdelivr.com](https://www.jsdelivr.com/)
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/housseynCheriet/SelectJs/selectjs.min.1.1.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/housseynCheriet/SelectJs/selectjs.min.1.2.js"></script>
 ```
 ## 1-Usage
 ### Selecting DOM elements:
