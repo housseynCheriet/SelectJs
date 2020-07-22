@@ -1,6 +1,6 @@
 /**
  * SelectJs library and framework of JavaScript
- * @version v1.1
+ * @version v1
  * @author Housseyn Cheriet
  * @copyright ©2020 Housseyn Cheriet
  * Released under the MIT license
@@ -338,25 +338,7 @@ function drag() {
                     }
                     isDown = [];
                 }
-                if (_touchEv) {
-                    var x = event.changedTouches[0].clientX - shiftX;
-                    var y = event.changedTouches[0].clientY - shiftY;
-                } else {
-                    var x = event.pageX - shiftX;
-                    var y = event.pageY - shiftY;
-                }
-                if (x < shiftLeftMin)
-                    x = shiftLeftMin;
-                else
-                if (x > shiftLeftMax)
-                    x = shiftLeftMax;
-                if (y < shiftTopMin)
-                    y = shiftTopMin;
-                else
-                if (y > shiftTopMax)
-                    y = shiftTopMax;
-                ele.style.top = y + 'px';
-                ele.style.left = x + 'px';
+                
             }
         }
     }
