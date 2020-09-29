@@ -75,6 +75,14 @@ string1,string2,string3 (Optional): the type of event ,("e:mousedown","e:mousemo
 
 ### More explanation clearly here: <a href="https://www.selectionjs.com/dragAndDrop">https://www.selectionjs.com/dragAndDrop</a>
 
+### -Supported browsers:
+
+Firefox 2+
+Safari 3+
+Opera 9.64+
+Chrome (all versions)
+IE10, IE11, Edge
+
 We love feedback!
 -----------------
 
