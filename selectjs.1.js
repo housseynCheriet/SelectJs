@@ -2,7 +2,7 @@
  * SelectJs library and framework of JavaScript
  * @version v1
  * @author Housseyn Cheriet
- * @copyright ©2020 Housseyn Cheriet
+ * @copyright Â©2020 Housseyn Cheriet
  * Released under the MIT license
  **/
 var _touchEv = "ontouchstart" in window,
@@ -171,8 +171,8 @@ function drag() {
         var uu = [],
             e = [
                 ["mousedown", !1, "e"],
-                ["mouseup", !1, "e"],
-                ["mousemove", !1, "e"]
+                ["mousemove", !1, "e"],
+                ["mouseup", !1, "e"]
             ],
             ev2, ev3;
         var draged = [];
@@ -241,8 +241,8 @@ function drag() {
             return function drag3(eve) {
                 var objPrprt = {},
                     isDown = [];
-                bindEvent(document.body, mouseMove(draged, whereDraged[0]), e[2])
-                bindEvent(document.body, mouseUp, e[1])
+                bindEvent(document.body, mouseMove(draged, whereDraged[0]), e[1])
+                bindEvent(document.body, mouseUp, e[2])
                 if (eve == "no") {
                     for (var h = 0; h < draged.length; h++) {
                         objPrprt[h] = {};
@@ -338,25 +338,7 @@ function drag() {
                     }
                     isDown = [];
                 }
-                if (_touchEv) {
-                    var x = event.changedTouches[0].clientX - shiftX;
-                    var y = event.changedTouches[0].clientY - shiftY;
-                } else {
-                    var x = event.pageX - shiftX;
-                    var y = event.pageY - shiftY;
-                }
-                if (x < shiftLeftMin)
-                    x = shiftLeftMin;
-                else
-                if (x > shiftLeftMax)
-                    x = shiftLeftMax;
-                if (y < shiftTopMin)
-                    y = shiftTopMin;
-                else
-                if (y > shiftTopMax)
-                    y = shiftTopMax;
-                ele.style.top = y + 'px';
-                ele.style.left = x + 'px';
+                
             }
         }
     }
@@ -397,12 +379,12 @@ function drag() {
 
 
 function animate() {
-    var s = arguments;
+    var s = arguments,storeTransform=[];
     return function mySelectedFunc(e, n, nn) {
         var n2, n3, x, y, fromY, toY, xFrom, xTo, objFrom, objTo, t, r = [],
             rr = [],
             bolNext = false,
-            a = {
+            a = {color: {},
                 transform: {},
                 from: {},
                 to: {}
@@ -416,13 +398,19 @@ function animate() {
                 }
                 rr = e;
             }
-            for (var c = 0; void 0 !== s[c]; c++) {
+            var _2ndFor=false;
+            for (var c = 0,sc=s.length; c<sc; c++) {
                 y = 0;
                 if (bolNext || (Array.isArray(s[c]) || isElement(s[c]))) {
+                   if(_2ndFor){
                     Array.isArray(s[c]) || (s[c] = [s[c]]), Array.prototype.push.apply(r, s[c]);
-                    bolNext = false;
-                } else {
-                    bolNext = false, objFrom = false, objTo = false;
+                    
+                   }
+                   bolNext = false;
+                } else if(typeof s[c] === 'object' && s[c] !== null){
+                    
+                    
+                     if(_2ndFor){
                     if (c == 0) {
                         for (var u = 0; void 0 !== e[u]; u++) {
                             if ("number" != typeof e[u])
@@ -430,6 +418,21 @@ function animate() {
                         }
                     }
                     
+                    if (e != undefined) {
+                        for (var l = 0; void 0 !== rr[l]; l++) {
+                            if ("number" != typeof rr[l]) {
+                                n3 = checkValEvent(nn, n, n2, rr[l + 1]);
+                                if (n3[0]) n2 = n3[0];
+                                bindEvent(rr[l], o(r, s,c), n3[1]);
+                            }
+                        }
+                    } else
+                        o(r, s,c)();
+                    
+                    
+                    }
+                    else{bolNext = false;
+                    objFrom = false, objTo = false;
                 if ("object" == typeof s[c].from)
                     objFrom = true;
                 if ("object" == typeof s[c].to)
@@ -452,11 +455,16 @@ function animate() {
                             toY = s[c]["to"][y];
                         if ("object" == typeof e) {
                             thisItem = Object.keys(e)[0], Array.isArray(e[thisItem]) || (e[thisItem] = [e[thisItem]]);
-                            ((-1 != thisItem.toLowerCase().indexOf("color") && (a[thisItem] = whoproperty[thisItem])) ||
+                            ((-1 != thisItem.toLowerCase().indexOf("color") && (a.color[thisItem] = whoproperty[thisItem])) ||
                                 -1 != thisItem.toLowerCase().indexOf("transform")) &&
                             (x = 0, a["from"][thisItem] = {}, a["to"][thisItem] = {},
                                 e[thisItem].forEach(function(e) {
+                                    
+                                   
+                                     if(thisItem.toLowerCase()=="transform")
                                     a[thisItem][e] = 0;
+                                    else
+                                    a.color[thisItem][e] = 0;
                                     if (objFrom) {
                                         if (fromY[thisItem] != undefined) {
                                             if (typeof fromY[thisItem] == "number") {
@@ -523,100 +531,211 @@ function animate() {
                             y++;
                         }
                     });
-                    s[c].storeValueAnim = s[c].storeValueAnimCopie = a;
-                    if (e != undefined) {
-                        for (var l = 0; void 0 !== rr[l]; l++) {
-                            if ("number" != typeof rr[l]) {
-                                n3 = checkValEvent(nn, n, n2, rr[l + 1]);
-                                if (n3[0]) n2 = n3[0];
-                                bindEvent(rr[l], o(r, s[c], c), n3[1]);
-                            }
-                        }
-                    } else
-                        o(r, s[c], c)();
-                    a = {
+                    s[c].storeValueAnimCopie = copy(a),s[c].storeValueAnim = [copy(s[c].storeValueAnimCopie)];
+                     a = {color: {},
                         transform: {},
                         from: {},
                         to: {}
                     };
+                    
+                }
                     if (s[c + 1] != undefined && (Array.isArray(s[c + 1]) || isElement(s[c + 1]))) {
+                        
                         bolNext = true;
                         r = [];
                     }
                 }
+                
+                if(c==sc-1&&!_2ndFor)
+                {bolNext = false;
+                _2ndFor=true;
+                c=-1;
+                }
             }
+       
         }
 
-        function o(r, l, e) {
-            var o, s = 0;
+        function o(r, sss,ccc) {
+            var l=sss[ccc],o, s = 0;
             var typeAnimation = l.typeAnimation,
                 typeAnimationImpair = typeAnimation;
-            if (l.boucle && (l.boucleType == "returnRepeat" || l.boucleType == "repeatReturn")) {
+                if (!isNaN(Number(l.timeline)))
+                l.timeline=Number(l.timeline);
+                else
+                l.timeline=0;
+                if (!isNaN(Number(l.startafter)))
+                l.startafter=Number(l.startafter);
+                 else
+                l.startafter=0;
+            if (l.boucle ) {
+                if (!isNaN(Number(l.delay)))
+                l.delay=Number(l.delay);
+                 else
+                l.delay=undefined;
+                if (l.boucleType == "returnRepeat" || l.boucleType == "repeatReturn") {
                 typeAnimationImpair = Easing[l.typeAnimation][1];
-            }
+            }}
             return function e(n) {
-                "object" == typeof n && (cancelAnimationFrame(l.animFram), l.storeValueAnim = l.storeValueAnimCopie, s = 0), 0 == s && (s = Date.now());
-                var t, a, aa, c, b = Date.now() - s;
+                "object" == typeof n && (cancelAnimationFrame(l.animFram),  s = 0), 0 == s && (s = Date.now());
+                var t , a, aa, c  //, b= Date.now() - s;
+                if(l.timeline!=0){
+                r.forEach(function(e,index) {
+                    if(!e.storeTransform)
+                    e.storeTransform=copy(sss[ccc].storeValueAnimCopie.transform);
+                    if(!e.storeColor)
+                    e.storeColor=copy(sss[ccc].storeValueAnimCopie.color);
+                    else
+                     Object.keys(sss[ccc].storeValueAnimCopie.color).forEach(key => {
+  if(!e.storeColor[key])
+  e.storeColor={[key]:sss[ccc].storeValueAnimCopie.color[key]};
+});
+                    
+                                sss[ccc].storeValueAnim[index]=copy(sss[ccc].storeValueAnimCopie);
+                                ee([e],index,l.timeline*index+l.startafter,l.startafter)();
+                            })
+                }else{
+                    r.forEach(function(e) {
+                    if(!e.storeTransform)
+                    e.storeTransform=copy(sss[ccc].storeValueAnimCopie.transform);
+                    if(!e.storeColor)
+                    e.storeColor=copy(sss[ccc].storeValueAnimCopie.color);
+                    else
+                     Object.keys(sss[ccc].storeValueAnimCopie.color).forEach(key => {
+  if(!e.storeColor[key])
+  e.storeColor={[key]:sss[ccc].storeValueAnimCopie.color[key]};
+});
+                    })
+                    sss[ccc].storeValueAnim = [copy(sss[ccc].storeValueAnimCopie)];
+                ee(r,0,0+l.startafter,l.startafter)();
+                }
+                function ee(r,idx,difT,strtA) {
+                    var sVidx=sss[ccc].storeValueAnim[idx];
+                    return function ee2(){
+                    var sVidx2,delay=0,b=Date.now() - (s+difT);
+                   
+                    if(b>=0){
                 if (l.boucle) {
-                    o = b % l.duration;
-                    if (Math.floor(b / l.duration) % 2 == 1) {
+                    if (l.delay!=undefined)
+                    {
+                        delay=l.delay;
+                     if (b % (l.duration+delay) > l.duration){
+                        
+                        if(!l["skipDelay_"+idx+"_"+ccc])
+                         l["firstSkip_"+idx+"_"+ccc]=true;
+                          l["skipDelay_"+idx+"_"+ccc]=true;
+                     }else
+                     l["skipDelay_"+idx+"_"+ccc]=false;
+                      
+                      }
+                    o = b % (l.duration+delay);
+                    if(!l["skipDelay_"+idx+"_"+ccc]){
+                        
+                    
+                    if (Math.floor(b / (l.duration+delay)) % 2 == 1) {
+                        
+                       
+                             if (l.boucleType.indexOf("return") == 0) 
+                        {
+                               o = l.duration - o;
+                            
+                        }
                         l.impair = true;
                         typeAnimation = typeAnimationImpair;
-                        if (l.boucleType.indexOf("return") == 0) //
+                        
+                    } else {
+                       l.impair = false;
+                        typeAnimation = l.typeAnimation;
+                        
+                    }}else{
+                        if(l["firstSkip_"+idx+"_"+ccc]){
+                           if (l.impair) {
+                        if (l.boucleType.indexOf("return") == 0) 
                         {
-                            o = l.duration - o;
-                            if (o < 16) {
                                 o = 0;
-                            }
+                            
                         } else if (l.boucleType.indexOf("repeat") == 0) {
-                            if (o > l.duration - 16) {
-                                o = l.duration;
-                            }
+                             o = l.duration;
+                            
                         }
                     } else {
-                        l.impair = false;
-                        typeAnimation = l.typeAnimation;
-                        if (o > l.duration - 16) {
-                            o = l.duration;
-                        }
+                         o = l.duration;
+                        
+                    }
+                    }
                     }
                 } else {
                     b < l.duration ? o = b : (o = l.duration, s = 0);
                 }
+                if(!l["skipDelay_"+idx+"_"+ccc]||l["firstSkip_"+idx+"_"+ccc]){
+                    //l["firstSkip_"+idx+"_"+ccc]=false;  
                 a = Easing[typeAnimation][0](o, 0, 1, l.duration, l);
-                if(l.callback){
-                    console.log(a)
-                    r.forEach(function(e) {
-                  l.callback(e,a,l); 
-                });
-                }else{
+                
+                
                 l.property.forEach(function(e) {
-                    if (t = Object.keys(e)[0], null != l.storeValueAnim[t]) {
-                        if ("transform" == t.toLowerCase()) c = "", e.transform.forEach(function(e) {
-                            aa = l.storeValueAnim["from"][t][e] + a * (l.storeValueAnim["to"][t][e] - l.storeValueAnim["from"][t][e]);
-                            l.storeValueAnim.transform[e] = aa, c += " " + repalce[e].replace("*", aa)
-                        }), r.forEach(function(e) {
-                            e.style.transform = c
+                    //console.log(sss);
+                    c = "";
+                    if(e!=undefined){
+                    if ( t = Object.keys(e)[0], "transform" == t.toLowerCase()&&null != sVidx[t]) 
+                        {  e.transform.forEach(function(e) {
+                            aa = sVidx["from"][t][e] + a * (sVidx["to"][t][e] - sVidx["from"][t][e]);
+                          //sVidx.transform[e] = r[0].storeTransform[e]=aa
+                          r.forEach(function(e2) {
+                           e2.storeTransform[e]=aa
                         });
-                        else if (-1 != t.toLowerCase().indexOf("color")) {
-                            for (var n in e[t].forEach(function(e) {
-                                    aa = l.storeValueAnim["from"][t][e] + a * (l.storeValueAnim["to"][t][e] - l.storeValueAnim["from"][t][e]);
-                                    l.storeValueAnim[t][e] = aa
-                                }), c = repalce.rgba, color) c = c.replace(new RegExp(n, "g"), l.storeValueAnim[t][n]);
-                            r.forEach(function(e) {
-                                e.style[t] = c
-                            })
+                           
+                           });
+                       
+                       
+                        r.forEach(function(el) {
+                            Object.keys(el.storeTransform).forEach(key => {
+  c += " " + repalce[key].replace("*", el.storeTransform[key])
+});
+                        if(l.callback)
+                        l.callback(e,a,l,idx,c);
+                        else
+                        el.style.transform = c;
+                            c = "";
+                        });
+                        //console.log(a,o);
                         }
-                    } else "string" == typeof e && (t = e), c = (l.px=="%"?repalce[t].replace("px","%"):repalce[t]).replace("*", l.storeValueAnim["from"][t] + a * (l.storeValueAnim["to"][t] - l.storeValueAnim["from"][t])), r.forEach(function(e) {
-                        e.style[t] = c
+                        else if (-1 != t.toLowerCase().indexOf("color")&&null != sVidx.color) {
+                            r.forEach(function(el) {
+                                for (var n in e[t].forEach(function(e) {
+                                    aa = sVidx["from"][t][e] + a * (sVidx["to"][t][e] - sVidx["from"][t][e]);
+                                    //sVidx.color[t][e] = aa;
+                                  
+                            el.storeColor[t][e]=aa
+                        
+                                    
+                                }), c = repalce.rgba, color) c = c.replace(new RegExp(n, "g"), el.storeColor[t][n]);
+                           if(l.callback)
+                        l.callback(e,a,l,idx,c);
+                        else
+                            el.style[t] = c
+                            })
+                        
+                    } else "string" == typeof e && (t = e), c = (l.px=="%"?repalce[t].replace("px","%"):repalce[t]).replace("*", sVidx["from"][t] + a * (sVidx["to"][t] - sVidx["from"][t])), r.forEach(function(e) {
+                       if(l.callback)
+                        l.callback(e,a,l,idx,c);
+                        else
+                       e.style[t] = c
                     })
-                })};
-                (l.boucle || b < l.duration) && (l.animFram = requestAnimationFrame(e))
-            }
+                }else if(l.callback){
+                    r.forEach(function(e) {
+                  l.callback(e,a,l,idx,c); 
+                });
+                }    
+                });
+                
+                
+                l["firstSkip_"+idx+"_"+ccc]=false; 
+                    }}
+                (l.boucle || b < l.duration) && (l.animFram = requestAnimationFrame(ee2))
+            }}}
         }
     }
 }
-var transformproperty = ["transform", "translateX", "translateY", "translateZ", "rotateX", "rotateY", "rotateZ", "scaleX", "scaleY", "skewX", "skewY"],
+var transformproperty = ["transform", "translateX", "translateY", "translateZ", "rotateX", "rotateY", "rotateZ", "scale", "scaleX", "scaleY", "skewX", "skewY"],
     rgbaproperty = ["rgbR", "rgbG", "rgbB", "rgbA"],
     color = {
         rgbR: 255,
@@ -631,6 +750,7 @@ whoproperty = {
     borderColor: color
 };
 var repalce = {
+        zIndex:"*",
         left: "*px",
         top: "*px",
         bottom: "*px",
@@ -660,6 +780,7 @@ var repalce = {
         rotateX: "rotateX(*deg)",
         rotateY: "rotateY(*deg)",
         rotateZ: "rotateZ(*deg)",
+        scale: "scale(*)",
         scaleX: "scaleX(*)",
         scaleY: "scaleY(*)",
         skewX: "skewX(*deg)",
@@ -919,12 +1040,6 @@ var repalce = {
     },
     allEvent = ["abort", "afterprint", "animationend", "animationiteration", "animationstart", "appinstalled", "audioprocess", "audioend", "audiostart", "beforeprint", "beforeunload", "beginEvent", "blur", "boundary", "cached", "canplay", "canplaythrough", "change", "chargingchange", "chargingtimechange", "checking", "click", "close", "complete", "compositionend", "compositionstart", "compositionupdate", "contextmenu", "copy", "cut", "dblclick", "devicechange", "devicelight", "devicemotion", "deviceorientation", "deviceproximity", "dischargingtimechange", "DOMActivate", "DOMAttributeNameChanged", "DOMAttrModified", "DOMCharacterDataModified", "DOMContentLoaded", "DOMElementNameChanged", "DOMFocusIn", "DOMFocusOut", "DOMNodeInserted", "DOMNodeInsertedIntoDocument", "DOMNodeRemoved", "DOMNodeRemovedFromDocument", "DOMSubtreeModified", "downloading", "drag", "dragend", "dragenter", "dragleave", "dragover", "dragstart", "drop", "durationchange", "emptied", "end", "ended", "endEvent", "error", "focus", "focusin", "focusout", "fullscreenchange", "fullscreenerror", "gamepadconnected", "gamepaddisconnected", "gotpointercapture", "hashchange", "lostpointercapture", "input", "invalid", "keydown", "keypress", "keyup", "languagechange", "levelchange", "load", "loadeddata", "loadedmetadata", "loadend", "loadstart", "mark", "message", "messageerror", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseout", "mouseover", "mouseup", "nomatch", "notificationclick", "noupdate", "obsolete", "offline", "online", "open", "orientationchange", "pagehide", "pageshow", "paste", "pause", "pointercancel", "pointerdown", "pointerenter", "pointerleave", "pointerlockchange", "pointerlockerror", "pointermove", "pointerout", "pointerover", "pointerup", "play", "playing", "popstate", "progress", "push", "pushsubscriptionchange", "ratechange", "readystatechange", "repeatEvent", "reset", "resize", "resourcetimingbufferfull", "result", "resume", "scroll", "seeked", "seeking", "select", "selectstart", "selectionchange", "show", "slotchange", "soundend", "soundstart", "speechend", "speechstart", "stalled", "start", "storage", "submit", "success", "suspend", "SVGAbort", "SVGError", "SVGLoad", "SVGResize", "SVGScroll", "SVGUnload", "SVGZoom", "timeout", "timeupdate", "touchcancel", "touchend", "touchmove", "touchstart", "transitionend", "unload", "updateready", "userproximity", "voiceschanged", "visibilitychange", "volumechange", "waiting", "wheel"];
 
-function copy(e, n) {
-    var t, a, c = Array.isArray(e) ? [] : {};
-    for (a in e) t = e[a], c[a] = !0 === n ? Array.isArray(t) ? copy(t, n) : t : "object" == typeof t ? copy(t) : t;
-    return c
-}
-
 function solveCubic(a, b, c, d) {
     var p = (3 * a * c - b * b) / (3 * a * a);
     var q = (2 * b * b * b - 9 * a * b * c + 27 * a * a * d) / (27 * a * a * a);
@@ -978,15 +1093,22 @@ function isElement(element) {
     return element instanceof Element || element instanceof HTMLDocument;
 }
 
-function copy(e) {
-    var l, r, n;
-    l = Array.isArray(e) ? [] : {};
-    for (n in e) r = e[n], l[n] = Array.isArray(r) ? copy(r) : r;
-    return l
-}
 
-function isO(e) {
-    return "object" != typeof e || Array.isArray(e) || null === e ? e : [e]
+const getCircularReplacer = () => {
+      const seen = new WeakSet();
+      return (key, value) => {
+        if (typeof value === "object" && value !== null) {
+          if (seen.has(value)) {
+            return;
+          }
+          seen.add(value);
+        }
+        return value;
+      };
+    };
+
+function copy(e){
+     return JSON.parse(JSON.stringify(e,getCircularReplacer()));
 }
 
 function isO(e) {
