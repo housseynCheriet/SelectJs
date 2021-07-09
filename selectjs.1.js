@@ -624,8 +624,8 @@ function animate() {
                         delay=l.delay;
                         fS=Math.floor((b+delay) / (l.duration+delay))
                       if (fS!=l.countSkip[idx]){
-                        console.log(fS)
                         l.countSkip[idx]=fS;
+                        if(!l.skipDelay[idx]) //important
                         l.firstSkip[idx]=true;
                           l.skipDelay[idx]=true;
                      }else if (b % (l.duration+delay) <= l.duration)
