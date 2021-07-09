@@ -557,6 +557,9 @@ function animate() {
 
         function o(r, sss,ccc) {
             var l=sss[ccc],o, s = 0;
+            l.firstSkip={};
+            l.skipDelay={};
+            l.countSkip={};
             var typeAnimation = l.typeAnimation,
                 typeAnimationImpair = typeAnimation;
                 if (!isNaN(Number(l.timeline)))
@@ -609,7 +612,8 @@ function animate() {
                 ee(r,0,0+l.startafter,l.startafter)();
                 }
                 function ee(r,idx,difT,strtA) {
-                    var sVidx=sss[ccc].storeValueAnim[idx];
+                    var fS,sVidx=sss[ccc].storeValueAnim[idx];
+                    l.countSkip[idx]=0;
                     return function ee2(){
                     var sVidx2,delay=0,b=Date.now() - (s+difT);
                    
@@ -618,17 +622,20 @@ function animate() {
                     if (l.delay!=undefined)
                     {
                         delay=l.delay;
-                     if (b % (l.duration+delay) > l.duration){
-                        
-                        if(!l["skipDelay_"+idx+"_"+ccc])
-                         l["firstSkip_"+idx+"_"+ccc]=true;
-                          l["skipDelay_"+idx+"_"+ccc]=true;
-                     }else
-                     l["skipDelay_"+idx+"_"+ccc]=false;
+                        fS=Math.floor((b+delay) / (l.duration+delay))
+                       // console.log(Math.floor(b / (l.duration+delay)))
+                     if (fS!=l.countSkip[idx]){
+                        console.log(fS)
+                        l.countSkip[idx]=fS;
+                        //if(!l.skipDelay[idx])
+                         l.firstSkip[idx]=true;
+                          l.skipDelay[idx]=true;
+                     }else if (b % (l.duration+delay) <= l.duration)
+                     l.skipDelay[idx]=false;
                       
                       }
                     o = b % (l.duration+delay);
-                    if(!l["skipDelay_"+idx+"_"+ccc]){
+                    if(!l.skipDelay[idx]){
                         
                     
                     if (Math.floor(b / (l.duration+delay)) % 2 == 1) {
@@ -647,7 +654,7 @@ function animate() {
                         typeAnimation = l.typeAnimation;
                         
                     }}else{
-                        if(l["firstSkip_"+idx+"_"+ccc]){
+                        if(l.firstSkip[idx]){
                            if (l.impair) {
                         if (l.boucleType.indexOf("return") == 0) 
                         {
@@ -666,11 +673,15 @@ function animate() {
                 } else {
                     b < l.duration ? o = b : (o = l.duration, s = 0);
                 }
-                if(!l["skipDelay_"+idx+"_"+ccc]||l["firstSkip_"+idx+"_"+ccc]){
-                    //l["firstSkip_"+idx+"_"+ccc]=false;  
+                if(!l.skipDelay[idx]||l.firstSkip[idx]){
+                    //l.firstSkip[idx]=false;  
                 a = Easing[typeAnimation][0](o, 0, 1, l.duration, l);
                 
-                
+                if(l.callback)
+                    r.forEach(function(el) {
+                    l.callback(el,a,l,idx);                     
+                    });
+                    else
                 l.property.forEach(function(e) {
                     //console.log(sss);
                     c = "";
@@ -690,9 +701,6 @@ function animate() {
                             Object.keys(el.storeTransform).forEach(key => {
   c += " " + repalce[key].replace("*", el.storeTransform[key])
 });
-                        if(l.callback)
-                        l.callback(e,a,l,idx,c);
-                        else
                         el.style.transform = c;
                             c = "";
                         });
@@ -708,16 +716,10 @@ function animate() {
                         
                                     
                                 }), c = repalce.rgba, color) c = c.replace(new RegExp(n, "g"), el.storeColor[t][n]);
-                           if(l.callback)
-                        l.callback(e,a,l,idx,c);
-                        else
-                            el.style[t] = c
+                           el.style[t] = c
                             })
                         
                     } else "string" == typeof e && (t = e), c = (l.px=="%"?repalce[t].replace("px","%"):repalce[t]).replace("*", sVidx["from"][t] + a * (sVidx["to"][t] - sVidx["from"][t])), r.forEach(function(e) {
-                       if(l.callback)
-                        l.callback(e,a,l,idx,c);
-                        else
                        e.style[t] = c
                     })
                 }else if(l.callback){
@@ -728,7 +730,7 @@ function animate() {
                 });
                 
                 
-                l["firstSkip_"+idx+"_"+ccc]=false; 
+                l.firstSkip[idx]=false; 
                     }}
                 (l.boucle || b < l.duration) && (l.animFram = requestAnimationFrame(ee2))
             }}}
