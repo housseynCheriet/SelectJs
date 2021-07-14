@@ -676,14 +676,14 @@ function animate() {
                 a = Easing[typeAnimation][0](o, 0, 1, l.duration, l);
                 
                 if(l.callback)
-                    r.forEach(function(el) {
-                    l.callback(el,a,l,idx);                     
+                    r.forEach(function(el,index) {
+                    l.callback(el,a,l,index);                     
                     });
                     else
                 l.property.forEach(function(e) {
                     //console.log(sss);
                     c = "";
-                    if(e!=undefined){
+                   
                     if ( t = Object.keys(e)[0], "transform" == t.toLowerCase()&&null != sVidx[t]) 
                         {  e.transform.forEach(function(e) {
                             aa = sVidx["from"][t][e] + a * (sVidx["to"][t][e] - sVidx["from"][t][e]);
@@ -720,11 +720,7 @@ function animate() {
                     } else "string" == typeof e && (t = e), c = (l.px=="%"?repalce[t].replace("px","%"):repalce[t]).replace("*", sVidx["from"][t] + a * (sVidx["to"][t] - sVidx["from"][t])), r.forEach(function(e) {
                        e.style[t] = c
                     })
-                }else if(l.callback){
-                    r.forEach(function(e) {
-                  l.callback(e,a,l,idx,c); 
-                });
-                }    
+                   
                 });
                 
                 
