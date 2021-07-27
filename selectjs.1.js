@@ -444,7 +444,8 @@ function animate() {
                     }
                     if (s[c].boucle && s[c].boucleType == undefined)
                         s[c].boucleType = "return";
-                    Array.isArray(s[c].property) || (s[c].property = [s[c].property]), s[c].property.forEach(function(e) {
+                !s[c].callback && 
+                (Array.isArray(s[c].property) || s[c].property != undefined && (s[c].property = [s[c].property])) && s[c].property.forEach(function(e) {
                         if (!objFrom)
                             xFrom = s[c].from;
                         else
