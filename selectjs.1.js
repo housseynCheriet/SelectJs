@@ -6,6 +6,7 @@
  * Released under the MIT license
  
  **/
+
 var _touchEv = "ontouchstart" in window,
     touchEvent = {
         mousedown: "touchstart",
