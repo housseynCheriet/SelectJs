@@ -557,10 +557,10 @@ function animate() {
         }
 
         function o(r, sss,ccc) {
-            var l=sss[ccc],o, s = 0;
-            l.firstSkip={};
-            l.skipDelay={};
-            l.countSkip={};
+            var l_={},l=sss[ccc],o, s = 0;
+            l_.firstSkip={};
+            l_.skipDelay={};
+            l_.countSkip={};
             var typeAnimation = l.typeAnimation,
                 typeAnimationImpair = typeAnimation;
                 if (!isNaN(Number(l.timeline)))
@@ -614,7 +614,7 @@ function animate() {
                 }
                 function ee(r,idx,difT,strtA) {
                     var fS,sVidx=sss[ccc].storeValueAnim[idx];
-                    l.countSkip[idx]=0;
+                    l_.countSkip[idx]=0;
                     return function ee2(){
                     var sVidx2,delay=0,b=Date.now() - (s+difT);
                    
@@ -624,17 +624,17 @@ function animate() {
                     {
                         delay=l.delay;
                         fS=Math.floor((b+delay) / (l.duration+delay))
-                      if (fS!=l.countSkip[idx]){
-                        l.countSkip[idx]=fS;
-                        //if(!l.skipDelay[idx]) //important
-                        l.firstSkip[idx]=true;
-                          l.skipDelay[idx]=true;
+                      if (fS!=l_.countSkip[idx]){
+                        l_.countSkip[idx]=fS;
+                        //if(!l_.skipDelay[idx]) //important
+                        l_.firstSkip[idx]=true;
+                          l_.skipDelay[idx]=true;
                      }else if (b % (l.duration+delay) < l.duration)
-                     l.skipDelay[idx]=false;
+                     l_.skipDelay[idx]=false;
                       
                       }
                     o = b % (l.duration+delay);
-                    if(!l.skipDelay[idx]){
+                    if(!l_.skipDelay[idx]){
                         
                     
                     if (Math.floor(b / (l.duration+delay)) % 2 == 1) {
@@ -653,7 +653,7 @@ function animate() {
                         typeAnimation = l.typeAnimation;
                         
                     }}else{
-                        if(l.firstSkip[idx]){
+                        if(l_.firstSkip[idx]){
                            if (l.impair) {
                         if (l.boucleType.indexOf("return") == 0) 
                         {
@@ -670,10 +670,10 @@ function animate() {
                     }
                     }
                 } else {
-                    b < l.duration ? o = b : (o = l.duration, s = 0);
+                    b < l.duration ? o = b : (o = l.duration/*, s = 0*/);
                 }
-                if(!l.skipDelay[idx]||l.firstSkip[idx]){
-                    //l.firstSkip[idx]=false;  
+                if(!l_.skipDelay[idx]||l_.firstSkip[idx]){
+                    //l_.firstSkip[idx]=false;  
                 a = Easing[typeAnimation][0](o, 0, 1, l.duration, l);
                 
                 if(l.callback)
@@ -725,7 +725,7 @@ function animate() {
                 });
                 
                 
-                l.firstSkip[idx]=false; 
+                l_.firstSkip[idx]=false; 
                     }}
                 (l.boucle || b < l.duration) && (l.animFram = requestAnimationFrame(ee2))
             }}}
@@ -1090,7 +1090,7 @@ function isElement(element) {
     return element instanceof Element || element instanceof HTMLDocument;
 }
 
-
+/*
 const getCircularReplacer = () => {
       const seen = new WeakSet();
       return (key, value) => {
@@ -1107,6 +1107,35 @@ const getCircularReplacer = () => {
 function copy(e){
      return JSON.parse(JSON.stringify(e,getCircularReplacer()));
 }
+
+*/
+function copy(obj) {
+         var retObj;
+        _assignProps = function(obj, keyIndex, retObj) {
+               var subType = Object.prototype.toString.call(obj[keyIndex]);
+               if(subType === "[object Object]" || subType === "[object Array]") {
+                    retObj[keyIndex] = copy(obj[keyIndex]);
+               }
+               else {
+                     retObj[keyIndex] = obj[keyIndex];
+               }
+        };
+
+        if(Object.prototype.toString.call(obj) === "[object Object]") {
+           retObj = {};
+           for(key in obj) {
+               this._assignProps(obj, key, retObj);
+           }
+        }
+        else if(Object.prototype.toString.call(obj) == "[object Array]") {
+           retObj = [];
+           for(var i = 0; i< obj.length; i++) {
+              this._assignProps(obj, i, retObj);
+            }
+        };
+
+        return retObj;
+    }
 
 function isO(e) {
     return "object" != typeof e || Array.isArray(e) || null === e ? e : [e]
