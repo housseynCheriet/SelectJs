@@ -4,6 +4,7 @@
  * @author Housseyn Cheriet
  * @copyright Â©2020 Housseyn Cheriet
  * Released under the MIT license
+ 
  **/
 var _touchEv = "ontouchstart" in window,
     touchEvent = {
