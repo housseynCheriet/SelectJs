@@ -8,6 +8,253 @@
  * Released under the MIT license
 **/
  function slider(n, el, col, row, img, strTitle, divCube) {
+      var Easing = {
+            linear: [function(e, n, t, a) {
+                return t * e / a + n
+            }, "linear"],
+            quadin: [function(e, n, t, a) {
+                return t * (e /= a) * e + n
+            }, "quadout"],
+            quadout: [function(e, n, t, a) {
+                return -t * (e /= a) * (e - 2) + n
+            }, "quadin"],
+            quadinout: [function(e, n, t, a) {
+                return (e /= a / 2) < 1 ? t / 2 * e * e + n : -t / 2 * (--e * (e - 2) - 1) + n
+            }, "quadoutin"],
+            quadoutin: [function(e, n, t, a) {
+                var p = e / a,
+                    p0;
+                if (p < 0.5) {
+                    p0 = 1 - 2 * p;
+                    return t * (0.5 * (1 - (p0 * p0))) + n;
+                } else {
+                    p0 = p * 2 - 1;
+                    return t * (0.5 * (p0 * p0) + 0.5) + n;
+                }
+            }, "quadinout"],
+            cubicin: [function(e, n, t, a) {
+                return t * (e /= a) * e * e + n
+            }, "cubicout"],
+            cubicout: [function(e, n, t, a) {
+                return t * ((e = e / a - 1) * e * e + 1) + n
+            }, "cubicin"],
+            cubicinout: [function(e, n, t, a) {
+                return (e /= a / 2) < 1 ? t / 2 * e * e * e + n : t / 2 * ((e -= 2) * e * e + 2) + n
+            }, "cubicoutin"],
+            cubicoutin: [function(e, n, t, a) {
+                var p = e / a,
+                    p0;
+                if (p < 0.5) {
+                    p0 = 1 - 2 * p;
+                    return t * (0.5 * (1 - (p0 * p0 * p0))) + n;
+                } else {
+                    p0 = p * 2 - 1;
+                    return t * (0.5 * (p0 * p0 * p0) + 0.5) + n;
+                }
+            }, "cubicinout"],
+            quartin: [function(e, n, t, a) {
+                return t * (e /= a) * e * e * e + n
+            }, "quartout"],
+            quartout: [function(e, n, t, a) {
+                return -t * ((e = e / a - 1) * e * e * e - 1) + n
+            }, "quartin"],
+            quartinout: [function(e, n, t, a) {
+                return (e /= a / 2) < 1 ? t / 2 * e * e * e * e + n : -t / 2 * ((e -= 2) * e * e * e - 2) + n
+            }, "quartoutin"],
+            quartoutin: [function(e, n, t, a) {
+                var p = e / a,
+                    p0;
+                if (p < 0.5) {
+                    p0 = 1 - 2 * p;
+                    return t * (0.5 * (1 - (p0 * p0 * p0 * p0))) + n;
+                } else {
+                    p0 = p * 2 - 1;
+                    return t * (0.5 * (p0 * p0 * p0 * p0) + 0.5) + n;
+                }
+            }, "quartinout"],
+            quintin: [function(e, n, t, a) {
+                return t * (e /= a) * e * e * e * e + n
+            }, "quintout"],
+            quintout: [function(e, n, t, a) {
+                return t * ((e = e / a - 1) * e * e * e * e + 1) + n
+            }, "quintin"],
+            quintinout: [function(e, n, t, a) {
+                return (e /= a / 2) < 1 ? t / 2 * e * e * e * e * e + n : t / 2 * ((e -= 2) * e * e * e * e + 2) + n
+            }, "quintoutin"],
+            quintoutin: [function(e, n, t, a) {
+                var p = e / a,
+                    p0;
+                if (p < 0.5) {
+                    p0 = 1 - 2 * p;
+                    return t * (0.5 * (1 - (p0 * p0 * p0 * p0 * p0))) + n;
+                } else {
+                    p0 = p * 2 - 1;
+                    return t * (0.5 * (p0 * p0 * p0 * p0 * p0) + 0.5) + n;
+                }
+            }, "quintinout"],
+            sinein: [function(e, n, t, a) {
+                return -t * Math.cos(e / a * (Math.PI / 2)) + t + n
+            }, "sineout"],
+            sineout: [function(e, n, t, a) {
+                return t * Math.sin(e / a * (Math.PI / 2)) + n
+            }, "sinein"],
+            sineinout: [function(e, n, t, a) {
+                return -t / 2 * (Math.cos(Math.PI * e / a) - 1) + n
+            }, "sineoutin"],
+            sineoutin: [function(e, n, t, a) {
+                var p = e / a,
+                    p0;
+                if (p < 0.5) {
+                    p0 = 1 - 2 * p;
+                    return t * (0.5 * (1 - (1 - Math.cos(p0 * Math.PI / 2)))) + n;
+                } else {
+                    p0 = p * 2 - 1;
+                    return t * (0.5 * (1 - Math.cos(p0 * Math.PI / 2)) + 0.5) + n;
+                }
+            }, "sineinout"],
+            expoin: [function(e, n, t, a) {
+                return 0 == e ? n : t * Math.pow(2, 10 * (e / a - 1)) + n
+            }, "expoout"],
+            expoout: [function(e, n, t, a) {
+                return e == a ? n + t : t * (1 - Math.pow(2, -10 * e / a)) + n
+            }, "expoin"],
+            expoinout: [function(e, n, t, a) {
+                return 0 == e ? n : e == a ? n + t : (e /= a / 2) < 1 ? t / 2 * Math.pow(2, 10 * (e - 1)) + n : t / 2 * (2 - Math.pow(2, -10 * --e)) + n
+            }, "expooutin"],
+            expooutin: [function(e, n, t, a) {
+                var p = e / a,
+                    p0;
+                if (p == 0) {
+                    return n;
+                } else if (p == 1) {
+                    return n + t;
+                } else
+                if (p < 0.5) {
+                    p0 = 1 - 2 * p;
+                    return t * (0.5 * (1 - (Math.pow(2, 10 * (p0 - 1))))) + n;
+                } else {
+                    p0 = p * 2 - 1;
+                    return t * (0.5 * (Math.pow(2, 10 * (p0 - 1))) + 0.5) + n;
+                }
+            }, "expoinout"],
+            circin: [function(e, n, t, a) {
+                return -t * (Math.sqrt(1 - (e /= a) * e) - 1) + n
+            }, "circout"],
+            circout: [function(e, n, t, a) {
+                return t * Math.sqrt(1 - (e = e / a - 1) * e) + n
+            }, "circin"],
+            circinout: [function(e, n, t, a) {
+                return (e /= a / 2) < 1 ? -t / 2 * (Math.sqrt(1 - e * e) - 1) + n : t / 2 * (Math.sqrt(1 - (e -= 2) * e) + 1) + n
+            }, "circoutin"],
+            circoutin: [function(e, n, t, a) {
+                var p = e / a,
+                    p0;
+                if (p < 0.5) {
+                    p0 = 1 - 2 * p;
+                    return t * (0.5 * Math.sqrt(1 - p0 * p0)) + n;
+                } else {
+                    p0 = p * 2 - 1;
+                    return t * (0.5 * (1 - Math.sqrt(1 - p0 * p0)) + 0.5) + n;
+                }
+            }, "circinout"],
+            elasticin: [function(e, n, t, a) {
+                var c = 1.70158,
+                    b = 0,
+                    r = t;
+                return 0 == e ? n : 1 == (e /= a) ? n + t : (b = b || .3 * a, c = r < Math.abs(t) ? (r = t, b / 4) : b / (2 * Math.PI) * Math.asin(t / r), -(r * Math.pow(2, 10 * --e) * Math.sin((e * a - c) * (2 * Math.PI) / b)) + n)
+            }, "elasticout"],
+            elasticout: [function(e, n, t, a) {
+                var c = 1.70158,
+                    b = 0,
+                    r = t;
+                return 0 == e ? n : 1 == (e /= a) ? n + t : (b = b || .3 * a, c = r < Math.abs(t) ? (r = t, b / 4) : b / (2 * Math.PI) * Math.asin(t / r), r * Math.pow(2, -10 * e) * Math.sin((e * a - c) * (2 * Math.PI) / b) + t + n)
+            }, "elasticin"],
+            elasticinout: [function(e, n, t, a) {
+                var c = 1.70158,
+                    b = 0,
+                    r = t;
+                return 0 == e ? n : 2 == (e /= a / 2) ? n + t : (b = b || a * (.3 * 1.5), c = r < Math.abs(t) ? (r = t, b / 4) : b / (2 * Math.PI) * Math.asin(t / r), e < 1 ? r * Math.pow(2, 10 * --e) * Math.sin((e * a - c) * (2 * Math.PI) / b) * -.5 + n : r * Math.pow(2, -10 * --e) * Math.sin((e * a - c) * (2 * Math.PI) / b) * .5 + t + n)
+            }, "elasticoutin"],
+            elasticoutin: [function(e, n, t, a) {
+                var p = e / a,
+                    p0;
+                if (p === 0) {
+                    return n;
+                } else if (p === 1) {
+                    return t + n;
+                }
+                if (p < 0.5) {
+                    p0 = 1 - 2 * p;
+                    return t * (0.5 * (1 - (-Math.pow(2, 8 * (p0 - 1)) * Math.sin(((p0 - 1) * 80 - 7.5) * Math.PI / 15)))) + n;
+                } else {
+                    p0 = p * 2 - 1;
+                    return t * (0.5 * (-Math.pow(2, 8 * (p0 - 1)) * Math.sin(((p0 - 1) * 80 - 7.5) * Math.PI / 15)) + 0.5) + n
+                }
+            }, "elasticinout"],
+            backin: [function(e, n, t, a) {
+                return t * (e /= a) * e * (2.70158 * e - 1.70158) + n
+            }, "backout"],
+            backout: [function(e, n, t, a) {
+                return t * ((e = e / a - 1) * e * (2.70158 * e + 1.70158) + 1) + n
+            }, "backin"],
+            backinout: [function(e, n, t, a) {
+                var c = 1.70158;
+                return (e /= a / 2) < 1 ? t / 2 * (e * e * ((1 + (c *= 1.525)) * e - c)) + n : t / 2 * ((e -= 2) * e * ((1 + (c *= 1.525)) * e + c) + 2) + n
+            }, "backoutin"],
+            backoutin: [function(e, n, t, a) {
+                var p = e / a,
+                    p0;
+                if (p < 0.5) {
+                    p0 = 1 - 2 * p;
+                    return t * (0.5 * (1 - p0 * p0 * (3 * p0 - 2))) + n;
+                } else {
+                    p0 = p * 2 - 1;
+                    return t * (0.5 * p0 * p0 * (3 * p0 - 2) + 0.5) + n;
+                }
+            }, "backinout"],
+            bouncein: [function(e, n, t, a) {
+                return t - Easing.bounceout[0](a - e, 0, t, a) + n
+            }, "bounceout"],
+            bounceout: [function(e, n, t, a) {
+                return (e /= a) < 1 / 2.75 ? t * (7.5625 * e * e) + n : e < 2 / 2.75 ? t * (7.5625 * (e -= 1.5 / 2.75) * e + .75) + n : e < 2.5 / 2.75 ? t * (7.5625 * (e -= 2.25 / 2.75) * e + .9375) + n : t * (7.5625 * (e -= 2.625 / 2.75) * e + .984375) + n
+            }, "bouncein"],
+            bounceinout: [function(e, n, t, a) {
+                return e < a / 2 ? .5 * Easing.bouncein[0](2 * e, 0, t, a) + n : .5 * Easing.bounceout[0](2 * e - a, 0, t, a) + .5 * t + n
+            }, "bounceoutin"],
+            bounceoutin: [function(e, n, t, a) {
+                var p = e / a,
+                    p0, pow2, bounce = 4;
+                if (p < 0.5) {
+                    p0 = 1 - 2 * p;
+                    while (p0 < ((pow2 = Math.pow(2, --bounce)) - 1) / 11) {}
+                    return t * (0.5 * (1 - (1 / Math.pow(4, 3 - bounce) - 7.5625 * Math.pow((pow2 * 3 - 2) / 22 - p0, 2)))) + n;
+                } else {
+                    p0 = p * 2 - 1;
+                    while (p0 < ((pow2 = Math.pow(2, --bounce)) - 1) / 11) {}
+                    return t * (0.5 * (1 / Math.pow(4, 3 - bounce) - 7.5625 * Math.pow((pow2 * 3 - 2) / 22 - p0, 2)) + 0.5) + n;
+                }
+            }, "bounceinout"],
+            vibration: [function(e, n, t, a, c) {
+                return n + (t - n) / 2 + Math.sin(e * Math.PI / (a / c.vibrationStep) + 3 * Math.PI / 2) * (t - n) / 2
+            }, "vibration"],
+            cubicbezier: [function(e, n, t, a, c, idx) {
+                var q = 1,
+                    qq = 0,
+                    sol;
+                if (c.impair && (c.boucleType == "returnRepeat" || c.boucleType == "repeatReturn")) {
+                    q = -1, qq = 1;
+                }
+                var b = e / a,
+                    r = 1 - b,
+                    l = Number(q * c.cubicbezier[0] + qq),
+                    o = Number(q * c.cubicbezier[2] + qq);
+                if ((sol = solveCubic(3 * l - 3 * o + 1, 0 - 6 * l + 3 * o, 3 * l, 0 - b))) {
+                    b = sol;
+                    r = 1 - b;
+                }
+                return y = (r = 1 - b) * r * r * 0 + 3 * r * r * b * Number(q * c.cubicbezier[1] + qq) + 3 * r * b * b * Number(q * c.cubicbezier[3] + qq) + b * b * b * 1, n + y * t
+            }, "cubicbezier"]
+        };
      var col=typeof col=="number"&&col>0?col:8,
      row=typeof row=="number"&&row>0?row:1,
      strTitle=strTitle!=undefined?strTitle:[],
