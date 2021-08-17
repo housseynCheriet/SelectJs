@@ -40,7 +40,7 @@ animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProp
 ```
 <img alt="Selecting DOM elements" src="https://selectjs.vercel.app/img/select_gif1.gif"/>
 
-### More explanation clearly here: <a href="https://selectjs.vercel.app/animation">selectjs.vercel.app/animation</a>
+### More explanation clearly here: <a href="https://selectjs.vercel.app/animation.html">Animation</a>
 
 ### -Event triggering animation:
 
@@ -56,13 +56,13 @@ select("#event_here",animate(select('#div'),objectProperty,objectProperty2,selec
 ```
 <img alt="Selecting DOM elements" src="https://selectjs.vercel.app/img/select_gif2.gif"/>
 
-### More explanation clearly here: <a href="https://selectjs.vercel.app/eventTriggeringAnimation">selectjs.vercel.app/eventTriggeringAnimation</a>
+### More explanation clearly here: <a href="https://selectjs.vercel.app/eventTriggeringAnimation.html">Event triggering animation</a>
 
-### -Event triggering any function: <a href="https://selectjs.vercel.app/SelectJsDOMEventListener">https://selectjs.vercel.app/SelectJsDOMEventListener</a>
+### -Event triggering any function: <a href="https://selectjs.vercel.app/SelectJsDOMEventListener.html">https://selectjs.vercel.app/SelectJs DOM Event Listener</a>
 
 ### -Image Slider:
 
-### The explanation clearly here: <a href="https://selectjs.vercel.app/imageSlider">https://selectjs.vercel.app/imageSlider</a>
+### The explanation clearly here: <a href="https://selectjs.vercel.app/imageSlider.html">Image Slider</a>
 
 ### -Drag and Drop Elements:
 ```html
@@ -73,7 +73,7 @@ w (Optional):Where to drag the element dragged.
 string1,string2,string3 (Optional): the type of event ,("e:mousedown","e:mousemove","e:mouseup") is default.
 ```
 
-### More explanation clearly here: <a href="https://selectjs.vercel.app/dragAndDrop">https://selectjs.vercel.app/dragAndDrop</a>
+### More explanation clearly here: <a href="https://selectjs.vercel.app/dragAndDrop.html">Drag and Drop</a>
 
 ### -Supported browsers:
 
