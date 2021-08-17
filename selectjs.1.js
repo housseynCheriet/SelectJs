@@ -2,7 +2,7 @@
  * SelectJs library and framework of JavaScript
  * @version v1
  * @author Housseyn Cheriet
- * @copyright 脗漏2021 Housseyn Cheriet
+ * @copyright 脗漏2020 Housseyn Cheriet
  * Released under the MIT license
  **/
 ! function(b) {
@@ -583,9 +583,11 @@
                             select(...l.pause);
                             l.pause[1]=l.pause[1].replace('r:','e:');
                             if (Array.isArray(l.pause)) {
-                                l.pause[2]=function pause() {
-                                   pauseBol  ? (pauseBol = false, diffTimePause += Date.now() - tPause) : (pauseBol = true, tPause = Date.now());
-                                };
+                                l.pause[2]=function pause(e) {
+                                    if(e/*&&e.isTrusted*/){
+                                    pauseBol  ? (pauseBol = false, diffTimePause += Date.now() - tPause) : (pauseBol = true, tPause = Date.now());
+                                }
+                            };
                                 select(...l.pause);
                                 
                                                         }
