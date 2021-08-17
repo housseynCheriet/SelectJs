@@ -17,7 +17,6 @@
     }), b.cancelAnimationFrame || (b.cancelAnimationFrame = function(e) {
         clearTimeout(e)
     })
-    
     var _touchEv = "ontouchstart" in window,
         touchEvent = {
             mousedown: "touchstart",
@@ -28,12 +27,12 @@
         if (_touchEv && touchEvent[t[0]] != undefined)
             t[0] = touchEvent[t[0]];
         e.addEventListener ? "e" == t[2] ? e.addEventListener(t[0], n, t[1]) :
-         "r" == t[2] && e.removeEventListener(t[0], n, t[1]) : 
-         e.attachEvent && ("e" == t[2] ? 
-            e.attachEvent("on" + t[0], function() {
-            n.call(event.srcElement, event)
-        }) : 
-            "r" == t[2])
+            "r" == t[2] && e.removeEventListener(t[0], n, t[1]) :
+            e.attachEvent && ("e" == t[2] ?
+                e.attachEvent("on" + t[0], function() {
+                    n.call(event.srcElement, event)
+                }) :
+                "r" == t[2])
     };
 
     function checkValEvent(nn, n, n2, b) {
@@ -570,39 +569,54 @@
                         typeAnimationImpair = Easing[typeAnimationReal][1];
                     }
                 }
-
-                
-                        
-                        
                 return function e(n) {
-
-
-                    var diffTimePause=0,pauseBol,tPause;
+                    var diffTimePause = 0,
+                        pauseBol, tPause;
                     if (l.pause) {
-                            l.pause[1]=l.pause[1].replace('e:','r:');
-                            select(...l.pause);
-                            l.pause[1]=l.pause[1].replace('r:','e:');
-                            if (Array.isArray(l.pause)) {
-                                l.pause[2]=function pause(e) {
-                                    if(e/*&&e.isTrusted*/){
-                                    pauseBol  ? (pauseBol = false, diffTimePause += Date.now() - tPause) : (pauseBol = true, tPause = Date.now());
+                        l.pause[1] = l.pause[1].replace('e:', 'r:');
+                        select(...l.pause);
+                        l.pause[1] = l.pause[1].replace('r:', 'e:');
+                        if (Array.isArray(l.pause)) {
+                            l.pause[2] = function pause(e) {
+                                if (e /*&&e.isTrusted*/ ) {
+                                    pauseBol ? (pauseBol = false, diffTimePause += Date.now() - tPause) : (pauseBol = true, tPause = Date.now());
                                 }
                             };
-                                select(...l.pause);
-                                
-                                                        }
-                               
+                            select(...l.pause);
                         }
-                            
-                        
+                    }
                     var s = Date.now();
                     var t, a, aa, c
                     if (l.timeline != 0) {
                         r.forEach(function(e, index) {
+                            if (!e.storeTransform)
+                                e.storeTransform = copy(sss[ccc].storeValueAnim.transform);
+                            if (!e.storeColor)
+                                e.storeColor = copy(sss[ccc].storeValueAnim.color);
+                            else
+                                Object.keys(sss[ccc].storeValueAnim.color).forEach(key => {
+                                    if (!e.storeColor[key])
+                                        e.storeColor = {
+                                            [key]: sss[ccc].storeValueAnim.color[key]
+                                        };
+                                });
                             ee([e], index, l.timeline * index + l.startafter, l.startafter);
                         })
                     } else {
-                         ee(r, 0, 0 + l.startafter, l.startafter);
+                        r.forEach(function(e) {
+                            if (!e.storeTransform)
+                                e.storeTransform = copy(sss[ccc].storeValueAnim.transform);
+                            if (!e.storeColor)
+                                e.storeColor = copy(sss[ccc].storeValueAnim.color);
+                            else
+                                Object.keys(sss[ccc].storeValueAnim.color).forEach(key => {
+                                    if (!e.storeColor[key])
+                                        e.storeColor = {
+                                            [key]: sss[ccc].storeValueAnim.color[key]
+                                        };
+                                });
+                        });
+                        ee(r, 0, 0 + l.startafter, l.startafter);
                     }
 
                     function ee(r, idx, difT, strtA) {
@@ -611,23 +625,19 @@
                         else
                             l.animFram = {};
                         var l2 = copy(sss[ccc]);
-                            
-                            
                         l2.changetypeAnim = l2.typeAnimation;
                         l2.countSkip = 0;
                         l2.countSkip2 = 0;
-                        var cS, sVidx = l2.storeValueAnim,
-                            storeTransform = copy(l2.storeValueAnim.transform),
-                            storeColor = copy(l2.storeValueAnim.color);
-                            function ee2() {
+                        var cS, sVidx = l2.storeValueAnim;
+                        //storeTransform = copy(l2.storeValueAnim.transform),
+                        //storeColor = copy(l2.storeValueAnim.color);
+                        function ee2() {
                             if (pauseBol) {
                                 l.animFram[idx] = requestAnimationFrame(ee2);
                                 return;
                             }
                             var sVidx2, delay = 0,
                                 b = Date.now() - (s + difT + diffTimePause);
-                               
-                                    
                             if (b >= 0) {
                                 if (l2.boucle) {
                                     if (l2.delay != undefined) {
@@ -680,27 +690,30 @@
                                         });
                                     else
                                         l2.property.forEach(function(e) {
+                                            c = "";
                                             if (t = Object.keys(e)[0], "transform" == t.toLowerCase() && null != sVidx[t]) {
                                                 e.transform.forEach(function(e) {
                                                     aa = sVidx["from"][t][e] + a * (sVidx["to"][t][e] - sVidx["from"][t][e]);
+                                                    //sVidx.transform[e] = r[0].storeTransform[e]=aa
                                                     r.forEach(function(e2) {
-                                                        storeTransform[e] = aa
+                                                        e2.storeTransform[e] = aa
                                                     });
                                                 });
-                                                c = "";
-                                                Object.keys(storeTransform).forEach(key => {
-                                                    c += " " + repalce[key].replace("*", storeTransform[key])
-                                                });
                                                 r.forEach(function(el) {
+                                                    Object.keys(el.storeTransform).forEach(key => {
+                                                        c += " " + repalce[key].replace("*", el.storeTransform[key])
+                                                    });
                                                     el.style.transform = c;
+                                                    c = "";
                                                 });
+                                                //console.log(a,o);
                                             } else if (-1 != t.toLowerCase().indexOf("color") && null != sVidx.color) {
-                                                for (var n in e[t].forEach(function(e) {
-                                                        aa = sVidx["from"][t][e] + a * (sVidx["to"][t][e] - sVidx["from"][t][e]);
-                                                        storeColor[t][e] = aa
-                                                    }), c = repalce.rgba, color)
-                                                    c = c.replace(new RegExp(n, "g"), storeColor[t][n]);
                                                 r.forEach(function(el) {
+                                                    for (var n in e[t].forEach(function(e) {
+                                                            aa = sVidx["from"][t][e] + a * (sVidx["to"][t][e] - sVidx["from"][t][e]);
+                                                            //sVidx.color[t][e] = aa;
+                                                            el.storeColor[t][e] = aa
+                                                        }), c = repalce.rgba, color) c = c.replace(new RegExp(n, "g"), el.storeColor[t][n]);
                                                     el.style[t] = c
                                                 })
                                             } else "string" == typeof e && (t = e), c = (l2.px == "%" ? repalce[t].replace("px", "%") : repalce[t]).replace("*", sVidx["from"][t] + a * (sVidx["to"][t] - sVidx["from"][t])), r.forEach(function(e) {
