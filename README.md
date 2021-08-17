@@ -19,14 +19,14 @@ elems.forEach(function( el ) {
     el.style.background="green";
 })
 ```
-<img alt="Selecting DOM elements" src="https://selectjs.vercel.app/img/select_img1.jpg"/>
+<img alt="Selecting DOM elements" src="https://selectjs.vercel.app/src/img/select_img1.jpg"/>
 
 ### More explanation clearly here: <a href="https://selectjs.vercel.app">selectjs.vercel.app</a>
 
 ## 2-What is in the library?
 ### -Animation:
  - There are 43 types of easing in animation (cubicbezier,linear,vibration,cubicin,...)
- <img alt="Selecting DOM elements" src="https://selectjs.vercel.app/img/select_img2.jpg"/>
+ <img alt="Selecting DOM elements" src="https://selectjs.vercel.app/src/img/select_img2.jpg"/>
 
 ```javascript
 var objectProperty={typeAnimation:"bounceout","property":[{transform:["translateY","rotateZ","rotateX"]},"left"],
@@ -38,7 +38,7 @@ from:[{transform:[-600,900,3000]},0],to:[{transform:[0]},700],duration:10000}
 animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProperty3)();
 //Or select(animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProperty3));  
 ```
-<img alt="Selecting DOM elements" src="https://selectjs.vercel.app/img/select_gif1.gif"/>
+<img alt="Selecting DOM elements" src="https://selectjs.vercel.app/src/img/select_gif1.gif"/>
 
 ### More explanation clearly here: <a href="https://selectjs.vercel.app/animation.html">Animation</a>
 
@@ -54,7 +54,7 @@ from:0,to:500,duration:2000}
 select("#event_here",animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProperty3));//"e:x|y"  x:event,y:(false or true) is a useCapture,"e:click|false" is Default
  
 ```
-<img alt="Selecting DOM elements" src="https://selectjs.vercel.app/img/select_gif2.gif"/>
+<img alt="Selecting DOM elements" src="https://selectjs.vercel.app/src/img/select_gif2.gif"/>
 
 ### More explanation clearly here: <a href="https://selectjs.vercel.app/eventTriggeringAnimation.html">Event triggering animation</a>
 
