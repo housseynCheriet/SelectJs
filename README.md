@@ -58,7 +58,7 @@ select("#event_here",animate(select('#div'),objectProperty,objectProperty2,selec
 
 ### More explanation clearly here: <a href="https://selectjs.vercel.app/eventTriggeringAnimation.html">Event triggering animation</a>
 
-### -Event triggering any function: <a href="https://selectjs.vercel.app/selectJs_DOM_EventListener.html">https://selectjs.vercel.app/SelectJs DOM Event Listener</a>
+### -Event triggering any function: <a href="https://selectjs.vercel.app/selectJs_DOM_EventListener.html">DOM Event Listener</a>
 
 ### -Image Slider:
 
