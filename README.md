@@ -19,14 +19,14 @@ elems.forEach(function( el ) {
     el.style.background="green";
 })
 ```
-<img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_img1.jpg"/>
+<img alt="Selecting DOM elements" src="https://selectjs.vercel.app/img/select_img1.jpg"/>
 
-### More explanation clearly here: <a href="https://www.selectionjs.com">www.selectionjs.com</a>
+### More explanation clearly here: <a href="https://selectjs.vercel.app">selectjs.vercel.app</a>
 
 ## 2-What is in the library?
 ### -Animation:
  - There are 43 types of easing in animation (cubicbezier,linear,vibration,cubicin,...)
- <img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_img2.jpg"/>
+ <img alt="Selecting DOM elements" src="https://selectjs.vercel.app/img/select_img2.jpg"/>
 
 ```javascript
 var objectProperty={typeAnimation:"bounceout","property":[{transform:["translateY","rotateZ","rotateX"]},"left"],
@@ -38,9 +38,9 @@ from:[{transform:[-600,900,3000]},0],to:[{transform:[0]},700],duration:10000}
 animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProperty3)();
 //Or select(animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProperty3));  
 ```
-<img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_gif1.gif"/>
+<img alt="Selecting DOM elements" src="https://selectjs.vercel.app/img/select_gif1.gif"/>
 
-### More explanation clearly here: <a href="https://www.selectionjs.com/animation">www.selectionjs.com/animation</a>
+### More explanation clearly here: <a href="https://selectjs.vercel.app/animation">selectjs.vercel.app/animation</a>
 
 ### -Event triggering animation:
 
@@ -54,15 +54,15 @@ from:0,to:500,duration:2000}
 select("#event_here",animate(select('#div'),objectProperty,objectProperty2,select('.cube'),objectProperty3));//"e:x|y"  x:event,y:(false or true) is a useCapture,"e:click|false" is Default
  
 ```
-<img alt="Selecting DOM elements" src="https://www.selectionjs.com/img/select_gif2.gif"/>
+<img alt="Selecting DOM elements" src="https://selectjs.vercel.app/img/select_gif2.gif"/>
 
-### More explanation clearly here: <a href="https://www.selectionjs.com/eventTriggeringAnimation">www.selectionjs.com/eventTriggeringAnimation</a>
+### More explanation clearly here: <a href="https://selectjs.vercel.app/eventTriggeringAnimation">selectjs.vercel.app/eventTriggeringAnimation</a>
 
-### -Event triggering any function: <a href="https://www.selectionjs.com/SelectJsDOMEventListener">https://www.selectionjs.com/SelectJsDOMEventListener</a>
+### -Event triggering any function: <a href="https://selectjs.vercel.app/SelectJsDOMEventListener">https://selectjs.vercel.app/SelectJsDOMEventListener</a>
 
 ### -Image Slider:
 
-### The explanation clearly here: <a href="https://www.selectionjs.com/imageSlider">https://www.selectionjs.com/imageSlider</a>
+### The explanation clearly here: <a href="https://selectjs.vercel.app/imageSlider">https://selectjs.vercel.app/imageSlider</a>
 
 ### -Drag and Drop Elements:
 ```html
@@ -73,7 +73,7 @@ w (Optional):Where to drag the element dragged.
 string1,string2,string3 (Optional): the type of event ,("e:mousedown","e:mousemove","e:mouseup") is default.
 ```
 
-### More explanation clearly here: <a href="https://www.selectionjs.com/dragAndDrop">https://www.selectionjs.com/dragAndDrop</a>
+### More explanation clearly here: <a href="https://selectjs.vercel.app/dragAndDrop">https://selectjs.vercel.app/dragAndDrop</a>
 
 ### -Supported browsers:
 
