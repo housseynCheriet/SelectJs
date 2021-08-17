@@ -24,7 +24,7 @@ elems.forEach(function( el ) {
 ### More explanation clearly here: <a href="https://selectjs.vercel.app">selectjs.vercel.app</a>
 
 ## 2-What is in the library?
-### -Animation <a href="https://easing-animations.vercel.app">See here</a>:
+### -Animation <a href="https://easing-animations.vercel.app">Look here</a>:
  - There are 43 types of easing in animation (cubicbezier,linear,vibration,cubicin,...)
  <img alt="Selecting DOM elements" src="https://selectjs.vercel.app/src/img/select_img2.jpg"/>
 
