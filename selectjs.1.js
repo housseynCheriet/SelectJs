@@ -401,7 +401,7 @@
                     rr = e;
                 }
                 var _2ndFor = false;
-                for (var c = 0, sc = s.length; c < sc; c++) {
+                for (let c = 0, sc = s.length; c < sc; c++) {
                     y = 0;
                     if (bolNext || (Array.isArray(s2[c]) || isElement(s2[c]))) {
                         if (_2ndFor) {
@@ -587,8 +587,7 @@
                     }
                     var s = Date.now();
                     var t, a, aa, c
-                    if (l.timeline != 0) {
-                        r.forEach(function(e, index) {
+                    r.forEach(function(e, index) {
                             if (!e.storeTransform)
                                 e.storeTransform = copy(sss[ccc].storeValueAnim.transform);
                             if (!e.storeColor)
@@ -600,24 +599,12 @@
                                             [key]: sss[ccc].storeValueAnim.color[key]
                                         };
                                 });
-                            ee([e], index, l.timeline * index + l.startafter, l.startafter);
+                            if (l.timeline != 0)
+                                ee([e], index, l.timeline * index + l.startafter, l.startafter);
                         })
-                    } else {
-                        r.forEach(function(e) {
-                            if (!e.storeTransform)
-                                e.storeTransform = copy(sss[ccc].storeValueAnim.transform);
-                            if (!e.storeColor)
-                                e.storeColor = copy(sss[ccc].storeValueAnim.color);
-                            else
-                                Object.keys(sss[ccc].storeValueAnim.color).forEach(key => {
-                                    if (!e.storeColor[key])
-                                        e.storeColor = {
-                                            [key]: sss[ccc].storeValueAnim.color[key]
-                                        };
-                                });
-                        });
+                    if (l.timeline == 0)
                         ee(r, 0, 0 + l.startafter, l.startafter);
-                    }
+                    
 
                     function ee(r, idx, difT, strtA) {
                         if (l.animFram)
@@ -686,7 +673,10 @@
                                     a = Easing[l2.changetypeAnim][0](l2.timeEasing, 0, 1, l2.duration, l2, idx);
                                     if (l2.callback)
                                         r.forEach(function(el, index) {
-                                            l2.callback(el, a, l2, index);
+                                            if(idx!=index)
+                                                l2.callback(el, a, l2, idx);
+                                            else
+                                                l2.callback(el, a, l2, index);
                                         });
                                     else
                                         l2.property.forEach(function(e) {
